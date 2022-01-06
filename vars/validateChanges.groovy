@@ -5,6 +5,7 @@ def call() {
 }
 
 // Get the list of changed files
+@NonCPS
 String getChangedFilesList() {
 
     changedFiles = []
@@ -19,5 +20,4 @@ String getChangedFilesList() {
     echo "${changedFiles}"
 
     return changedFiles
-
 }
