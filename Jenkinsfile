@@ -5,8 +5,8 @@ pipeline {
   stages {
     stage('Print Changes') {
       when {
-        script{
-          validateChanges.getChangedFilesList()
+        expression {
+          return validateChanges.getChangedFilesList()
         }
       }
       steps {
