@@ -10,7 +10,7 @@ List<String> getChangedFilesList() {
 
     echo "${GIT_COMMIT}"
 
-    changedFiles = "git diff-tree --no-commit-id --name-only -r ${GIT_COMMIT}".execute().text
+    changedFiles = sh("git diff-tree --no-commit-id --name-only -r ${GIT_COMMIT}")
     echo "Current changedFiles: ${changedFiles}"
     
     // for (changeLogSet in currentBuild.changeSets) { 
