@@ -6,7 +6,7 @@ pipeline {
     stage('Print Changes') {
       when {
         expression {
-          return validateChanges.getChangedFilesList()
+          return validateChanges()
         }
       }
       steps {
