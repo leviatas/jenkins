@@ -13,10 +13,10 @@ List<String> getChangedFilesList(String folderName = "") {
     echo "Current changedFiles: ${changedFiles}"
 
     if (changedFiles.contains(folderName)){
-        echo "Contains folder ${folderName}? yes"
+        // echo "Contains folder ${folderName}? yes"
         return true;
     }else{
-        echo "Contains folder ${folderName}? no"
+        // echo "Contains folder ${folderName}? no"
         return false;
     }
 }

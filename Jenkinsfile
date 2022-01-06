@@ -4,9 +4,12 @@ pipeline {
 
   stages {
     stage('Print Changes') {
+      when {
+        validateChanges.getChangedFilesList()
+      }
       steps {
           script{
-            validateChanges.getChangedFilesList()
+            sh "echo Hubo Cambios"
           }
       }
     }
