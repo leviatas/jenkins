@@ -8,9 +8,9 @@ def call() {
 @NonCPS
 List<String> getChangedFilesList() {
 
-    echo "${GIT_REVISION}"
+    echo "${GIT_COMMIT}"
 
-    changedFiles = "git diff-tree --no-commit-id --name-only -r ${GIT_REVISION}".execute().text
+    changedFiles = "git diff-tree --no-commit-id --name-only -r ${GIT_COMMIT}".execute().text
     echo "Current changedFiles: ${changedFiles}"
     
     // for (changeLogSet in currentBuild.changeSets) { 
