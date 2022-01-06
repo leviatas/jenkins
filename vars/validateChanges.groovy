@@ -8,16 +8,18 @@ def call() {
 @NonCPS
 List<String> getChangedFilesList() {
 
-    changedFiles = []
-    for (changeLogSet in currentBuild.changeSets) { 
-        for (entry in changeLogSet.getItems()) { // for each commit in the detected changes
-            for (file in entry.getAffectedFiles()) {
-                changedFiles.add(file.getPath()) // add changed file to list
-            }
-        }
-    }
+    echo "${GIT_REVISION}"
 
-    echo "${changedFiles}"
+    changedFiles = "git diff-tree --no-commit-id --name-only -r ${GIT_REVISION}".execute().text
+    echo "Current changedFiles: ${changedFiles}"
+    
+    // for (changeLogSet in currentBuild.changeSets) { 
+    //     for (entry in changeLogSet.getItems()) { // for each commit in the detected changes
+    //         for (file in entry.getAffectedFiles()) {
+    //             changedFiles.add(file.getPath()) // add changed file to list
+    //         }
+    //     }
+    // }
 
     return changedFiles
 }
