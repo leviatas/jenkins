@@ -5,20 +5,13 @@ def call() {
 }
 
 // Get the list of changed files
-List<String> getChangedFilesList() {
+List<String> getChangedFilesList(String folderName = "") {
 
     echo "${GIT_COMMIT}"
 
-    changedFiles = sh("git diff-tree --no-commit-id --name-only -r ${GIT_COMMIT}")
+    changedFiles = sh(returnStdout: true, script: "git diff-tree --no-commit-id --name-only -r ${GIT_COMMIT}").trim()
     echo "Current changedFiles: ${changedFiles}"
-    
-    // for (changeLogSet in currentBuild.changeSets) { 
-    //     for (entry in changeLogSet.getItems()) { // for each commit in the detected changes
-    //         for (file in entry.getAffectedFiles()) {
-    //             changedFiles.add(file.getPath()) // add changed file to list
-    //         }
-    //     }
-    // }
-
-    return changedFiles
+    containsFolder = sh(returnStdout: true, script: "[[ '${changedFiles}' == *'${folderName}'* ]] && echo true || echo false").trim()
+    echo "Contains folder ${folderName}? ${changedFiles}"
+    return containsFolder
 }
