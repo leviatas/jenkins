@@ -11,7 +11,12 @@ List<String> getChangedFilesList(String folderName = "") {
 
     changedFiles = sh(returnStdout: true, script: "git diff-tree --no-commit-id --name-only -r ${GIT_COMMIT}").trim()
     echo "Current changedFiles: ${changedFiles}"
-    containsFolder = sh(returnStdout: true, script: "[[ '${changedFiles}' == *'${folderName}'* ]] && echo true || echo false").trim()
-    echo "Contains folder ${folderName}? ${changedFiles}"
-    return containsFolder
+
+    if (changedFiles.conains(folderName)){
+        echo "Contains folder ${folderName}? yes"
+        return true;
+    }else{
+        echo "Contains folder ${folderName}? no"
+        return false;
+    }
 }
