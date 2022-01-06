@@ -5,7 +5,6 @@ def call() {
 }
 
 // Get the list of changed files
-@NonCPS
 List<String> getChangedFilesList() {
 
     echo "${GIT_COMMIT}"
