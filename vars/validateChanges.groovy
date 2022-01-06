@@ -6,7 +6,7 @@ def call() {
 
 // Get the list of changed files
 @NonCPS
-String getChangedFilesList() {
+List<String> getChangedFilesList() {
 
     changedFiles = []
     for (changeLogSet in currentBuild.changeSets) { 

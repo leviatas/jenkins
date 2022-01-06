@@ -1,7 +1,15 @@
+gitHubLibrary("jenkins")
 pipeline {
   agent any
 
   stages {
+    stage('Print Changes') {
+      steps {
+          script{
+            validateChanges.getChangedFilesList()
+          }
+      }
+    }
     stage("Build") {
       steps {
         sh "./gradlew build"
