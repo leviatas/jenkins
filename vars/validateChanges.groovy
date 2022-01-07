@@ -1,4 +1,10 @@
 def call(String folderName = "") {
+    // Validate that GIT_COMMIT is set
+    if (System.getenv("GIT_COMMIT") == null) {
+        // Set GIT_COMMIT
+        env.GIT_COMMIT = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+    }    
+    
     echo "${GIT_COMMIT}"
 
     changedFiles = sh(returnStdout: true, script: "git diff-tree --no-commit-id --name-only -r ${GIT_COMMIT}").trim()
